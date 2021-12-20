@@ -1,6 +1,6 @@
-package life.view;
+package org.life.view;
 
-import life.model.Universe;
+import org.life.model.Universe;
 
 import javax.swing.*;
 import java.awt.*;

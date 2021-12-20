@@ -1,10 +1,10 @@
-package life;
+package org.life;
 
-import life.controller.Controller;
-import life.model.GenerationModel;
-import life.model.Model;
-import life.view.GameOfLife;
-import life.view.View;
+import org.life.controller.Controller;
+import org.life.model.GenerationModel;
+import org.life.model.Model;
+import org.life.view.GameOfLife;
+import org.life.view.View;
 
 public class Main {
     public static void main(String[] args) {

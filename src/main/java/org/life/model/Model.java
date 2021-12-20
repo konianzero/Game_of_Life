@@ -1,4 +1,4 @@
-package life.model;
+package org.life.model;
 
 public interface Model {
     void initModel(int size);

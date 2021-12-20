@@ -1,4 +1,4 @@
-package life.model;
+package org.life.model;
 
 import java.util.Iterator;
 import java.util.Random;

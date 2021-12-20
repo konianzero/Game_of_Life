@@ -1,4 +1,5 @@
-# JetBrainsAcademy
- [Hyperskill JetBrains Academy - Java Developer](https://hyperskill.org)
+Game of Life
+------------
 
-- Game of life
+From JetBrains Academy 'Game of life' project.
+

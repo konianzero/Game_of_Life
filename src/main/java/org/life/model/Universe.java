@@ -1,4 +1,4 @@
-package life.model;
+package org.life.model;
 
 import java.util.*;
 import java.util.stream.IntStream;

@@ -1,7 +1,7 @@
-package life.controller;
+package org.life.controller;
 
-import life.model.Model;
-import life.view.View;
+import org.life.model.Model;
+import org.life.view.View;
 
 public class Controller {
     private View view;

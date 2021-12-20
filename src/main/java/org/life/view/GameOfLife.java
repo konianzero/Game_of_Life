@@ -1,10 +1,9 @@
-package life.view;
+package org.life.view;
 
-import life.controller.Controller;
-import life.model.Universe;
+import org.life.controller.Controller;
+import org.life.model.Universe;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class GameOfLife extends JFrame implements View {
     private static final String generationStr = "Generation #%d";
