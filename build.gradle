@@ -1,5 +1,6 @@
 plugins {
     id 'application'
+    id 'java'
 }
 
 group 'org.life'
@@ -11,7 +12,7 @@ compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
 application {
-    mainClass = 'org.life.Main'
+    mainClassName = "org.life.Main"
 }
 
 repositories {
