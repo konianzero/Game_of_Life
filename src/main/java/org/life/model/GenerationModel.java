@@ -1,11 +1,9 @@
 package org.life.model;
 
-import java.util.Iterator;
 import java.util.Random;
 
 public class GenerationModel implements Model {
     private Generator generator;
-    private Iterator<Universe> iterator;
 
     public GenerationModel() {
     }
@@ -14,23 +12,22 @@ public class GenerationModel implements Model {
         long seed = new Random().nextInt();
         int generations = Integer.MAX_VALUE;
 
-        generator = new Generator(generations);
-        generator.setFirstUniverse(new Universe.Builder()
-                .setSize(size)
-                .setSeed(seed)
-                .build()
+        generator = new ClassicUniverseGenerator(
+                generations,
+                new Universe.Builder()
+                        .setSize(size)
+                        .setSeed(seed)
+                        .build()
         );
-
-        iterator = generator.iterator();
     }
 
     @Override
     public boolean hasNext() {
-        return iterator.hasNext();
+        return generator.hasNext();
     }
 
     @Override
     public Universe getNext() {
-        return iterator.next();
+        return generator.next();
     }
 }
