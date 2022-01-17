@@ -3,7 +3,12 @@ package org.life.controller;
 import org.life.model.Generator;
 import org.life.view.View;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Controller {
+
+    private final Logger log = LoggerFactory.getLogger(Controller.class);
     private View view;
     private Generator generator;
 
@@ -52,7 +57,8 @@ public class Controller {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
-            System.out.println(e);
+            log.warn("Thread Interrupted", e);
+            Thread.currentThread().interrupt();
         }
     }
 }
