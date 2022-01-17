@@ -3,6 +3,7 @@ package org.life.model;
 import java.util.BitSet;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Random;
 
 /**
  * Universe generator with classic rules:
@@ -15,11 +16,11 @@ import java.util.NoSuchElementException;
  * @author konianzero
  * @since 0.2
  */
-class ClassicUniverseGenerator implements Generator, Iterator<Universe> {
+public class ClassicUniverseGenerator implements Generator, Iterator<Universe> {
     /**
      * Number of generations
      */
-    private final int generations;
+    private int generations;
 
     /**
      * the Universe - a closed surface marked up into cells {@link Universe}
@@ -31,9 +32,16 @@ class ClassicUniverseGenerator implements Generator, Iterator<Universe> {
      */
     private int count = -1;
 
-    public ClassicUniverseGenerator(int generations, Universe first) {
+    public ClassicUniverseGenerator() {
+    }
+
+    public void init(int generations, int universeSize) {
         this.generations = generations;
-        this.current = first;
+
+        current = new Universe.Builder()
+                        .setSize(universeSize)
+                        .setSeed(new Random().nextInt())
+                        .build();
     }
 
     /**

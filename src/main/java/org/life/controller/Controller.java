@@ -1,41 +1,51 @@
 package org.life.controller;
 
-import org.life.model.Model;
+import org.life.model.Generator;
 import org.life.view.View;
 
 public class Controller {
     private View view;
-    private Model model;
+    private Generator generator;
 
-    public boolean isPaused = false;
-    public boolean isReset = true;
+    private boolean paused = false;
+    private boolean reset = true;
 
     public void setView(View view) {
         this.view = view;
     }
 
-    public void setModel(Model model) {
-        this.model = model;
+    public void setModel(Generator generator) {
+        this.generator = generator;
     }
+
+    public boolean isPaused() { return paused; }
+
+    public void setPaused(boolean paused) { this.paused = paused; }
+
+    public void setReset(boolean reset) { this.reset = reset; }
 
     public void onStart() {
         while (true) {
-            if (isReset) {
-                model.initModel(50);
-                isReset = false;
+            if (reset) {
+                initModel(50);
+                reset = false;
             }
 
-            while (isPaused) {
+            while (paused) {
                 sleep(100);
             }
 
-            if (model.hasNext()) {
-                view.refresh(model.getNext());
+            if (generator.hasNext()) {
+                view.refresh(generator.next());
                 sleep(1000);
             } else {
                 break;
             }
         }
+    }
+
+    private void initModel(int size) {
+        generator.init(Integer.MAX_VALUE, size);
     }
 
     private void sleep(int millis) {

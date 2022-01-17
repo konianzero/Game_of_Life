@@ -33,14 +33,14 @@ public class GameOfLife extends JFrame implements View {
         pauseButton.setBounds(5,5, 70,20);
         pauseButton.setName("PlayToggleButton");
         pauseButton.setText("Pause");
-        pauseButton.addActionListener(actionEvent -> controller.isPaused = !controller.isPaused);
+        pauseButton.addActionListener(actionEvent -> controller.setPaused(!controller.isPaused()));
 
         JButton resetButton = new JButton();
         resetButton.setBounds(5,30, 70,20);
         resetButton.setName("ResetButton");
         resetButton.setText("Reset");
         resetButton.addActionListener(actionEvent -> {
-            controller.isReset = true;
+            controller.setReset(true);
             genCount = 0;
         });
 

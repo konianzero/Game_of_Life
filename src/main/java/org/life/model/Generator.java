@@ -7,6 +7,7 @@ package org.life.model;
  * @since 0.2
  */
 public interface Generator {
+    void init(int generations, int universeSize);
     boolean hasNext();
     Universe next();
 }
