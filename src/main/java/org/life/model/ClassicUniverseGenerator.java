@@ -23,18 +23,21 @@ public class ClassicUniverseGenerator implements Generator, Iterator<Universe> {
     private int generations;
 
     /**
-     * the Universe - a closed surface marked up into cells {@link Universe}
+     * The Universe - a closed surface marked up into cells {@link Universe}
      */
     private Universe current;
 
     /**
-     * generations counter
+     * Generations counter
      */
     private int count = -1;
 
     public ClassicUniverseGenerator() {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void init(int generations, int universeSize) {
         this.generations = generations;
 
@@ -45,9 +48,7 @@ public class ClassicUniverseGenerator implements Generator, Iterator<Universe> {
     }
 
     /**
-     * Returns {@code true} if there is more generations.
-     *
-     * @return {@code true} if there is more generations
+     * {@inheritDoc}
      */
     @Override
     public boolean hasNext() {
@@ -55,9 +56,7 @@ public class ClassicUniverseGenerator implements Generator, Iterator<Universe> {
     }
 
     /**
-     * Returns next universe.
-     *
-     * @return next universe
+     * {@inheritDoc}
      */
     @Override
     public Universe next() {

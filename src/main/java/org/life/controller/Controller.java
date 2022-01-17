@@ -6,59 +6,102 @@ import org.life.view.View;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * This class controls game actions.
+ */
 public class Controller {
 
+    /** Logger */
     private final Logger log = LoggerFactory.getLogger(Controller.class);
+    /** Game thread that starts main game loop */
+    private final Thread gameThread = new Thread(this::mainLoop);
+    /** UI {@link View} */
     private View view;
+    /** Universe {@link Generator} */
     private Generator generator;
 
-    private boolean paused = false;
+    /** Flag for game pause */
+    private volatile boolean paused = false;
+    /** Flag for game reset */
     private boolean reset = true;
 
+    /**
+     * Set UI view.
+     *
+     * @param view UI view
+     */
     public void setView(View view) {
         this.view = view;
     }
 
-    public void setModel(Generator generator) {
+    /**
+     * Set universe generator.
+     *
+     * @param generator universe generator
+     */
+    public void setGenerator(Generator generator) {
         this.generator = generator;
     }
 
-    public boolean isPaused() { return paused; }
+    /**
+     * Switched pause flag.
+     */
+    public synchronized void togglePauseFlag() { this.paused = !this.paused; }
 
-    public void setPaused(boolean paused) { this.paused = paused; }
+    /**
+     * Set reset flag to true.
+     */
+    public void setResetFlagToTrue() { this.reset = true; }
 
-    public void setReset(boolean reset) { this.reset = reset; }
+    /**
+     * Start main loop one time.
+     */
+    public void startMainLoopOnce() {
+        if (!gameThread.isAlive()) {
+            gameThread.start();
+        }
+    }
 
-    public void onStart() {
+    /**
+     * Main game loop.
+     */
+    private void mainLoop() {
         while (true) {
             if (reset) {
-                initModel(50);
+                initGenerator(50);
                 reset = false;
             }
 
             while (paused) {
-                sleep(100);
+                Thread.onSpinWait();
             }
 
             if (generator.hasNext()) {
                 view.refresh(generator.next());
-                sleep(1000);
+                delay();
             } else {
                 break;
             }
         }
     }
 
-    private void initModel(int size) {
+    /**
+     * Initialize generator with new universe size.
+     * @param size universe size
+     */
+    private void initGenerator(int size) {
         generator.init(Integer.MAX_VALUE, size);
     }
 
-    private void sleep(int millis) {
+    /**
+     * Delay for displaying universe in the interface.
+     */
+    private void delay() {
         try {
-            Thread.sleep(millis);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
-            log.warn("Thread Interrupted", e);
-            Thread.currentThread().interrupt();
+            log.warn("Game Thread Interrupted", e);
+            gameThread.interrupt();
         }
     }
 }
