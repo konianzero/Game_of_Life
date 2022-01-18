@@ -46,7 +46,18 @@ public class Controller {
     /**
      * Switched pause flag.
      */
-    public synchronized void togglePauseFlag() { this.paused = !this.paused; }
+    public synchronized void togglePauseFlag() {
+        this.paused = !this.paused;
+    }
+
+    /**
+     * Return pause flag.
+     *
+     * @return pause flag
+     */
+    public boolean getPauseFlag() {
+        return this.paused;
+    }
 
     /**
      * Set reset flag to true.
@@ -68,8 +79,9 @@ public class Controller {
     private void mainLoop() {
         while (true) {
             if (reset) {
-                initGenerator(50);
+                initGenerator(100);
                 reset = false;
+                paused = false;
             }
 
             while (paused) {

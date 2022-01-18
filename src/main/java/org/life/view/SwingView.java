@@ -30,13 +30,15 @@ public class SwingView extends JFrame implements View {
      * Create swing view.
      */
     public SwingView() {
+        super("Game Of Life");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(430, 350);
+        setSize(615, 545);
         setLocationRelativeTo(null);
+        setResizable(false);
+        setLayout(null);
 
         initComponents();
 
-        setLayout(null);
         setVisible(true);
     }
 
@@ -45,15 +47,8 @@ public class SwingView extends JFrame implements View {
      */
     private void initComponents() {
 
-        JToggleButton pauseButton = new JToggleButton();
-        pauseButton.setBounds(5,5, 100,20);
-        pauseButton.setName("PlayToggleButton");
-        pauseButton.setText("Pause");
-        pauseButton.addActionListener(actionEvent -> controller.togglePauseFlag());
-
         JButton resetButton = new JButton();
-        resetButton.setBounds(5,30, 100,20);
-        resetButton.setName("ResetButton");
+        resetButton.setBounds(5,5, 100,20);
         resetButton.setText("Start/Reset");
         resetButton.addActionListener(actionEvent -> {
             controller.setResetFlagToTrue();
@@ -61,16 +56,22 @@ public class SwingView extends JFrame implements View {
             controller.startMainLoopOnce();
         });
 
+        JToggleButton pauseButton = new JToggleButton();
+        pauseButton.setBounds(5,30, 100,20);
+        pauseButton.setText("Pause");
+        pauseButton.addActionListener(actionEvent -> {
+            controller.togglePauseFlag();
+            resetButton.setEnabled(!controller.getPauseFlag());
+        });
+
         generationLabel = new JLabel(String.format(GENERATION_COUNT, 0));
-        generationLabel.setBounds(5,55, 90,20);
-        generationLabel.setName("GenerationLabel");
+        generationLabel.setBounds(5,55, 100,20);
 
         aliveLabel = new JLabel(String.format(ALIVE_CELLS, 0));
         aliveLabel.setBounds(5,75, 100,20);
-        aliveLabel.setName("AliveLabel");
 
         field = new Field();
-        field.setBounds(120,5, 300,300);
+        field.setBounds(110,5, 500,500);
 
         add(resetButton);
         add(pauseButton);
