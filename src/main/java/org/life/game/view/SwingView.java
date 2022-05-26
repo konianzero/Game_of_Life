@@ -53,7 +53,7 @@ public class SwingView extends JFrame implements View {
         resetButton.addActionListener(actionEvent -> {
             controller.setResetFlagToTrue();
             genCount = 0;
-            controller.startMainLoopOnce();
+            controller.startMainLoop();
         });
 
         JToggleButton pauseButton = new JToggleButton();

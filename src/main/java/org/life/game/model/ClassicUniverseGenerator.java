@@ -81,22 +81,22 @@ public class ClassicUniverseGenerator implements Generator, Iterator<Universe> {
             int row = coordinatesOfCell[0];
             int col = coordinatesOfCell[1];
 
-            boolean cellState = current.getCell(row, col);
+            boolean cellState = current.getCellState(row, col);
             BitSet neighbors = current.getNeighbors(row, col);
 
             int aliveNeighbors = neighbors.cardinality();
 
             // dead cell with three live neighbours becomes a live cell
             if (!cellState && aliveNeighbors == 3) {
-                next.setCell(row, col, true);
+                next.setCellState(row, col, true);
             }
             // cell with two or three live neighbours survives
             else if (cellState && (aliveNeighbors == 2 || aliveNeighbors == 3)) {
-                next.setCell(row, col, true);
+                next.setCellState(row, col, true);
             }
             // all other live cells die in the next generation, dead cells stay dead
             else {
-                next.setCell(row, col, false);
+                next.setCellState(row, col, false);
             }
         }
         return next;

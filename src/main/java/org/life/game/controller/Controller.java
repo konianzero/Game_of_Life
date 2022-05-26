@@ -67,7 +67,7 @@ public class Controller {
     /**
      * Start main loop one time.
      */
-    public void startMainLoopOnce() {
+    public void startMainLoop() {
         if (!gameThread.isAlive()) {
             gameThread.start();
         }

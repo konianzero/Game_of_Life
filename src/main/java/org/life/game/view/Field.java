@@ -84,6 +84,6 @@ class Field extends JPanel {
     }
 
     private boolean isAlive(int[] coordinates) {
-        return universe.getCell(coordinates[0], coordinates[1]);
+        return universe.getCellState(coordinates[0], coordinates[1]);
     }
 }
