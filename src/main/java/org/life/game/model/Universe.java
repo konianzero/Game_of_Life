@@ -17,23 +17,27 @@ public class Universe implements Iterable<int[]> {
             {-1,  1}, {0,  1}, {1,  1}
     };
 
-    private final boolean[][] matrix;
+    private final BitSet matrix;
     private final int size;
     private int aliveCells = 0;
 
     public Universe(int size) {
         this.size = size;
-        matrix = new boolean[size][size];
+        matrix = new BitSet(size * size);
         fillRandom();
     }
 
     public void setCellState(int row, int col, boolean state) {
-        matrix[row][col] = state;
+        matrix.set(byBitIndex(row, col), state);
         if (state) { aliveCells++; }
     }
 
     public boolean getCellState(int row, int col) {
-        return matrix[row][col];
+        return matrix.get(byBitIndex(row, col));
+    }
+
+    private int byBitIndex(int row, int col) {
+        return row * size + col;
     }
 
     public int getSize() {
@@ -50,13 +54,17 @@ public class Universe implements Iterable<int[]> {
                 );
     }
 
-    public BitSet getNeighbors(int row, int col) {
+    public int countAliveNeighbors(int row, int col) {
+        return getNeighborsState(row, col).cardinality();
+    }
+
+    private BitSet getNeighborsState(int row, int col) {
         BitSet neighbors = new BitSet(8);
         int neighborsCount = 0;
         for (int[] coords: neighborsCoordinates) {
             int r = get(coords[0] + row);
             int c = get(coords[1] + col);
-            if (matrix[r][c]) {
+            if (matrix.get(byBitIndex(r, c))) {
                 neighbors.set(neighborsCount);
             }
             neighborsCount++;
