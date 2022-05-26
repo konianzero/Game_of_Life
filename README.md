@@ -12,8 +12,14 @@ From JetBrains Academy 'Game of life' project.
 
 ---
 
-**Launch**
+### Launch
 ```
 ./gradlew run
 ```
+
+---
+
+### Example
+
+![](images/view.png)
 
