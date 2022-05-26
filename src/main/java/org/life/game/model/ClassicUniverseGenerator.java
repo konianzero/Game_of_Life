@@ -3,7 +3,6 @@ package org.life.game.model;
 import java.util.BitSet;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Random;
 
 /**
  * Universe generator with classic rules:
@@ -14,7 +13,7 @@ import java.util.Random;
  * </ol>
  *
  * @author konianzero
- * @since 0.2
+ * @since 0.5
  */
 public class ClassicUniverseGenerator implements Generator, Iterator<Universe> {
     /**
@@ -40,7 +39,6 @@ public class ClassicUniverseGenerator implements Generator, Iterator<Universe> {
 
         current = new Universe.Builder()
                         .setSize(universeSize)
-                        .setSeed(new Random().nextInt())
                         .build();
     }
 

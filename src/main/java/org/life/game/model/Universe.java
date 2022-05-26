@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
  * This class represents the Universe - a closed surface marked up into cells.
  *
  * @author konianzero
- * @since 0.2
+ * @since 0.5
  */
 public class Universe implements Iterable<int[]> {
     private static final String ALIVE = "O";
@@ -19,8 +19,9 @@ public class Universe implements Iterable<int[]> {
     };
 
     private final boolean[][] map;
+    private Random rand;
 
-    private int size;
+    private final int size;
     private int aliveCells = 0;
 
     public void setCell(int row, int col, boolean state) {
@@ -34,20 +35,18 @@ public class Universe implements Iterable<int[]> {
 
     public int getAliveCells() { return aliveCells; }
 
-    private Universe(int size, Optional<Long> seed) {
+    private Universe(int size) {
         this.size = size;
         map = new boolean[size][size];
 
-        if (!seed.isEmpty()) {
-            fillRandom(seed.get());
-        }
+        rand = new Random();
+        fillRandom();
     }
 
-    private void fillRandom(long seed) {
-        final Random random = new Random(seed);
+    private void fillRandom() {
         IntStream.range(0, size)
                 .forEach(row -> IntStream.range(0, size)
-                        .forEach(col -> setCell(row, col, random.nextBoolean()))
+                        .forEach(col -> setCell(row, col, rand.nextBoolean()))
                 );
     }
 
@@ -60,13 +59,8 @@ public class Universe implements Iterable<int[]> {
             return this;
         }
 
-        public Builder setSeed(long seed) {
-            this.seed = Optional.of(seed);
-            return this;
-        }
-
         public Universe build() {
-            return new Universe(size, seed);
+            return new Universe(size);
         }
     }
 
