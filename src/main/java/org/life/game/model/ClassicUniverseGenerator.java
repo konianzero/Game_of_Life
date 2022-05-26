@@ -37,9 +37,7 @@ public class ClassicUniverseGenerator implements Generator, Iterator<Universe> {
     public void init(int generations, int universeSize) {
         this.generations = generations;
 
-        current = new Universe.Builder()
-                        .setSize(universeSize)
-                        .build();
+        current = new Universe(universeSize);
     }
 
     /**
@@ -77,7 +75,7 @@ public class ClassicUniverseGenerator implements Generator, Iterator<Universe> {
      * @return new universe based on previous with applied rules
      */
     private Universe generateNext(Universe current) {
-        Universe next = new Universe.Builder().setSize(current.getSize()).build();
+        Universe next = new Universe(current.getSize());
 
         for (int[] coordinatesOfCell : current) {
             int row = coordinatesOfCell[0];

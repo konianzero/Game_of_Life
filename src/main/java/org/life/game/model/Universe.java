@@ -19,7 +19,7 @@ public class Universe implements Iterable<int[]> {
     };
 
     private final boolean[][] map;
-    private Random rand;
+    private final Random rand;
 
     private final int size;
     private int aliveCells = 0;
@@ -35,7 +35,7 @@ public class Universe implements Iterable<int[]> {
 
     public int getAliveCells() { return aliveCells; }
 
-    private Universe(int size) {
+    public Universe(int size) {
         this.size = size;
         map = new boolean[size][size];
 
@@ -48,20 +48,6 @@ public class Universe implements Iterable<int[]> {
                 .forEach(row -> IntStream.range(0, size)
                         .forEach(col -> setCell(row, col, rand.nextBoolean()))
                 );
-    }
-
-    public static class Builder {
-        private int size;
-        private Optional<Long> seed = Optional.empty();
-
-        public Builder setSize(int size) {
-            this.size = size;
-            return this;
-        }
-
-        public Universe build() {
-            return new Universe(size);
-        }
     }
 
     public int getSize() {
