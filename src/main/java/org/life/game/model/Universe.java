@@ -35,7 +35,7 @@ public class Universe implements Iterable<int[]> {
     public boolean getCellState(int row, int col) {
         return matrix.get(byBitIndex(row, col));
     }
-    
+
     private int byBitIndex(int row, int col) {
         return row * size + col;
     }
@@ -54,7 +54,11 @@ public class Universe implements Iterable<int[]> {
                 );
     }
 
-    public BitSet getNeighbors(int row, int col) {
+    public int countAliveNeighbors(int row, int col) {
+        return getNeighborsState(row, col).cardinality();
+    }
+
+    private BitSet getNeighborsState(int row, int col) {
         BitSet neighbors = new BitSet(8);
         int neighborsCount = 0;
         for (int[] coords: neighborsCoordinates) {

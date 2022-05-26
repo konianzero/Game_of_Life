@@ -82,9 +82,7 @@ public class ClassicUniverseGenerator implements Generator, Iterator<Universe> {
             int col = coordinatesOfCell[1];
 
             boolean cellState = current.getCellState(row, col);
-            BitSet neighbors = current.getNeighbors(row, col);
-
-            int aliveNeighbors = neighbors.cardinality();
+            int aliveNeighbors = current.countAliveNeighbors(row, col);
 
             // dead cell with three live neighbours becomes a live cell
             if (!cellState && aliveNeighbors == 3) {
