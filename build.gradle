@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'org.life'
-version '0.5-SNAPSHOT'
+version '0.6-SNAPSHOT'
 description 'Game of Life'
 
 sourceCompatibility = '17'

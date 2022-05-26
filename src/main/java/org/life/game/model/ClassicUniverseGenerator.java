@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
  * </ol>
  *
  * @author konianzero
- * @since 0.5
+ * @since 0.6
  */
 public class ClassicUniverseGenerator implements Generator, Iterator<Universe> {
     /**

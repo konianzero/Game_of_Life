@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
  * This class represents the Universe - a closed surface (toroidal) marked up into cells.
  *
  * @author konianzero
- * @since 0.5
+ * @since 0.6
  */
 public class Universe implements Iterable<int[]> {
     private static final int[][] neighborsCoordinates = new int[][] {
