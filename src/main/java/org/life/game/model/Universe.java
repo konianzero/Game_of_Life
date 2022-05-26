@@ -103,21 +103,4 @@ public class Universe implements Iterable<int[]> {
             return comb;
         }
     }
-
-    @Override
-    public String toString() {
-        StringBuilder buf = new StringBuilder();
-        IntStream.range(0, size)
-                .forEach(row -> {
-                    IntStream.range(0, size)
-                            .forEach(col ->
-                                    buf.append(
-                                            map[row][col] ? ALIVE : DEAD
-                                    )
-                            );
-                    buf.append("\n");
-                });
-
-        return buf.toString();
-    }
 }
