@@ -1,7 +1,7 @@
-package org.life.controller;
+package org.life.game.controller;
 
-import org.life.model.Generator;
-import org.life.view.View;
+import org.life.game.model.Generator;
+import org.life.game.view.View;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -112,7 +112,7 @@ public class Controller {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            log.warn("Game Thread Interrupted", e);
+            log.error("Game Thread Interrupted", e);
             gameThread.interrupt();
         }
     }

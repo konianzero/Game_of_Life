@@ -1,10 +1,10 @@
-package org.life;
+package org.life.game;
 
-import org.life.controller.Controller;
-import org.life.model.ClassicUniverseGenerator;
-import org.life.model.Generator;
-import org.life.view.SwingView;
-import org.life.view.View;
+import org.life.game.controller.Controller;
+import org.life.game.model.ClassicUniverseGenerator;
+import org.life.game.model.Generator;
+import org.life.game.view.SwingView;
+import org.life.game.view.View;
 
 public class Main {
     public static void main(String[] args) {

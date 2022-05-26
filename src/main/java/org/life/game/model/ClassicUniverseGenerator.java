@@ -1,4 +1,4 @@
-package org.life.model;
+package org.life.game.model;
 
 import java.util.BitSet;
 import java.util.Iterator;
@@ -31,9 +31,6 @@ public class ClassicUniverseGenerator implements Generator, Iterator<Universe> {
      * Generations counter
      */
     private int count = -1;
-
-    public ClassicUniverseGenerator() {
-    }
 
     /**
      * {@inheritDoc}

@@ -1,6 +1,6 @@
-package org.life.view;
+package org.life.game.view;
 
-import org.life.model.Universe;
+import org.life.game.model.Universe;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +12,6 @@ class Field extends JPanel {
     private int rowCount;
 
     private boolean calculated = false;
-    private int width;
-    private int height;
     private int cellWidth;
     private int cellHeight;
     private int xOffset;
@@ -34,8 +32,8 @@ class Field extends JPanel {
         columnCount = universe.getSize();
         rowCount = universe.getSize();
 
-        width = getWidth();
-        height = getHeight();
+        int width = getWidth();
+        int height = getHeight();
 
         cellWidth = width / columnCount;
         cellHeight = height / rowCount;
@@ -47,11 +45,6 @@ class Field extends JPanel {
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(columnCount, rowCount);
-    }
-
-    @Override
-    public void invalidate() {
-        super.invalidate();
     }
 
     @Override

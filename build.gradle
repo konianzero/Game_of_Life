@@ -1,10 +1,10 @@
 plugins {
     id 'application'
-    id 'java'
 }
 
 group 'org.life'
-version '0.3-SNAPSHOT'
+version '0.4-SNAPSHOT'
+description 'Game of Life'
 
 sourceCompatibility = '17'
 targetCompatibility = '17'
@@ -12,7 +12,7 @@ compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
 application {
-    mainClassName = "org.life.Main"
+    mainClassName = "org.life.game.Main"
 }
 
 repositories {
@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'ch.qos.logback:logback-classic:1.2.10'
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }

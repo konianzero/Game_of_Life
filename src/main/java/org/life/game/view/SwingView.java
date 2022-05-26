@@ -1,7 +1,7 @@
-package org.life.view;
+package org.life.game.view;
 
-import org.life.controller.Controller;
-import org.life.model.Universe;
+import org.life.game.controller.Controller;
+import org.life.game.model.Universe;
 
 import javax.swing.*;
 

@@ -1,8 +1,14 @@
-package org.life.model;
+package org.life.game.model;
 
 import java.util.*;
 import java.util.stream.IntStream;
 
+/**
+ * This class represents the Universe - a closed surface marked up into cells.
+ *
+ * @author konianzero
+ * @since 0.2
+ */
 public class Universe implements Iterable<int[]> {
     private static final String ALIVE = "O";
     private static final String DEAD = " ";
@@ -97,12 +103,12 @@ public class Universe implements Iterable<int[]> {
 
     private class CoordinatesIterator implements Iterator<int[]> {
         private int i = 0;
-        private int[][] coordinates = getCellsCoordinates();
-        public boolean hasNext()  { return i < coordinates.length;              }
-        public void remove()      { throw new UnsupportedOperationException();  }
+        private final int[][] coordinates = getCellsCoordinates();
+        @Override public boolean hasNext()  { return i < coordinates.length; }
+        @Override public void remove()      { throw new UnsupportedOperationException("Remove not support!"); }
 
-        public int[] next() {
-            if (!hasNext())       { throw new NoSuchElementException();         }
+        @Override public int[] next() {
+            if (!hasNext())       { throw new NoSuchElementException(); }
             int[] c = coordinates[i];
             i++;
             return c;
@@ -120,7 +126,7 @@ public class Universe implements Iterable<int[]> {
 
     @Override
     public String toString() {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         IntStream.range(0, size)
                 .forEach(row -> {
                     IntStream.range(0, size)

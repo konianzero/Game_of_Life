@@ -1,4 +1,4 @@
-package org.life.model;
+package org.life.game.model;
 
 /**
  * Universe generator interface.
